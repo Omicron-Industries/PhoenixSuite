@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Phoenix Suite</title>
+  <meta name="description" content="A suite of Minecraft Forge mods and modpacks by Phoenixvine." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔥</text></svg>" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top">
+        <span class="brand-mark">🔥</span>
+        <span class="brand-text">Phoenix Suite</span>
+      </a>
+      <nav class="site-nav">
+        <a href="#projects">Projects</a>
+        <a href="#showcase">Showcase</a>
+        <a href="wiki/" class="nav-cta">Wiki ↗</a>
+      </nav>
+      <div class="header-controls">
+        <div class="palette-picker" role="group" aria-label="Color theme">
+          <button class="palette-swatch is-active" data-palette="sakura" title="Sakura (purple + pink)" aria-label="Sakura palette"></button>
+          <button class="palette-swatch" data-palette="ember" title="Ember (purple + orange)" aria-label="Ember palette"></button>
+          <button class="palette-swatch" data-palette="void" title="Void (purple + cyan)" aria-label="Void palette"></button>
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode" title="Toggle light/dark mode">
+          <span class="icon-sun">☀️</span><span class="icon-moon">🌙</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Minecraft Forge 1.20.1</p>
+        <h1>A suite of mods, one shared foundation.</h1>
+        <p class="hero-lede">
+          The PhoenixSuite is a collection of minecraft mods and modpacks focused on stability, ease of use, good documentation,
+          and community focus. Most of the mods in the Suite are modpack utility and not content mods.
+          This Suite is built and maintained by Phoenixvine.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">Browse Projects</a>
+          <a class="btn btn-secondary" href="wiki/">Open the Wiki</a>
+        </div>
+        <div class="stat-strip" aria-hidden="true">
+          <div class="stat"><span class="stat-num">16</span><span class="stat-label">Projects</span></div>
+          <div class="stat"><span class="stat-num">1.20.1</span><span class="stat-label">Forge</span></div>
+          <div class="stat"><span class="stat-num">OSS</span><span class="stat-label">Open Source</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase" id="showcase">
+      <div class="wrap">
+        <h2>What's in the suite</h2>
+        <div class="showcase-grid">
+          <div class="showcase-card">
+            <span class="showcase-icon">🧩</span>
+            <h3>A shared foundation</h3>
+            <p>PhoenixCore underpins most of the suite — a common set of systems most other
+              Phoenix mods build on, instead of each reinventing the same plumbing.</p>
+          </div>
+          <div class="showcase-card">
+            <span class="showcase-icon">📜</span>
+            <h3>A real quest system</h3>
+            <p>Phoenix Chronicles brings modern quest editing — live dependency lines,
+              drag-to-reorder, composable filters — with direct FTB Quests import support.</p>
+          </div>
+          <div class="showcase-card">
+            <span class="showcase-icon">🎒</span>
+            <h3>A complete modpack</h3>
+            <p>Phoenix Forge Technologies is the flagship pack built around the suite — the
+              proving ground where everything gets used together.</p>
+          </div>
+          <div class="showcase-card">
+            <span class="showcase-icon">📚</span>
+            <h3>Actually documented</h3>
+            <p>A shared wiki for the whole suite — player guides, modpack-building guides, and
+              developer docs for anyone extending the mods themselves.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="projects" id="projects">
+      <div class="wrap">
+        <div class="projects-head">
+          <h2>Projects</h2>
+          <div class="filter-bar" role="group" aria-label="Filter projects by status">
+            <button class="filter-chip is-active" data-filter="all">All</button>
+            <button class="filter-chip" data-filter="forever">Forever</button>
+            <button class="filter-chip" data-filter="active">Active</button>
+            <button class="filter-chip" data-filter="maintenance">Maintenance</button>
+            <button class="filter-chip" data-filter="limbo">Limbo / Abandoned</button>
+          </div>
+        </div>
+        <div class="project-grid" id="projectGrid"><!-- populated by main.js --></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span>Phoenix Suite — built by Phoenixvine.</span>
+      <a href="wiki/">Wiki</a>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
