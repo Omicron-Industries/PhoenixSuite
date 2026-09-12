@@ -1,4 +1,3 @@
-
 (function () {
   const root = document.documentElement;
   const btn = document.getElementById("themeToggle");
@@ -31,9 +30,8 @@
   });
 })();
 
-// Fallback data — used only if content.md can't be fetched (e.g. the page
-// was opened directly as a file:// URL rather than served over http).
-// Otherwise this is overwritten by loadContent() below.
+// Source of truth for the project list. Edit this array directly to
+// add, remove, or update a mod.
 let PROJECTS = [
   {
     name: "PhoenixCore",
@@ -181,15 +179,15 @@ function timeAgo(isoDate) {
 
 function projectCard(p) {
   const github = p.githubUrl
-    ? `<a href="${escapeHtml(p.githubUrl)}" target="_blank" rel="noopener" tabindex="-1">GitHub</a>`
-    : `<span class="link-disabled">GitHub</span>`;
+      ? `<a href="${escapeHtml(p.githubUrl)}" target="_blank" rel="noopener" tabindex="-1">GitHub</a>`
+      : `<span class="link-disabled">GitHub</span>`;
   const cf = p.cfUrl
-    ? `<a href="${escapeHtml(p.cfUrl)}" target="_blank" rel="noopener" tabindex="-1">CurseForge</a>`
-    : `<span class="link-disabled">CurseForge</span>`;
+      ? `<a href="${escapeHtml(p.cfUrl)}" target="_blank" rel="noopener" tabindex="-1">CurseForge</a>`
+      : `<span class="link-disabled">CurseForge</span>`;
   const repo = parseGithubRepo(p.githubUrl);
   const statsMarkup = repo
-    ? `<p class="project-stats" data-loaded="false"></p>`
-    : `<p class="project-stats is-error">no GitHub repo linked</p>`;
+      ? `<p class="project-stats" data-loaded="false"></p>`
+      : `<p class="project-stats is-error">no GitHub repo linked</p>`;
 
   return `
     <div class="project-card-flip" data-status="${escapeHtml(p.status)}" ${repo ? `data-repo="${escapeHtml(repo)}"` : ""}>
@@ -222,7 +220,7 @@ function renderProjects(filter) {
   const grid = document.getElementById("projectGrid");
   if (!grid) return;
   const items =
-    filter === "all" ? PROJECTS : PROJECTS.filter((p) => p.status === filter);
+      filter === "all" ? PROJECTS : PROJECTS.filter((p) => p.status === filter);
   grid.innerHTML = items.map(projectCard).join("");
 }
 
@@ -234,8 +232,8 @@ function updateProjectCount() {
 document.querySelectorAll(".filter-chip").forEach((chip) => {
   chip.addEventListener("click", () => {
     document
-      .querySelectorAll(".filter-chip")
-      .forEach((c) => c.classList.remove("is-active"));
+        .querySelectorAll(".filter-chip")
+        .forEach((c) => c.classList.remove("is-active"));
     chip.classList.add("is-active");
     renderProjects(chip.dataset.filter);
   });
@@ -276,25 +274,25 @@ function loadGithubStats(wrapper) {
   statsEl.classList.add("is-loading");
 
   fetch(`https://api.github.com/repos/${repo}`)
-    .then((res) => (res.ok ? res.json() : Promise.reject(res.status)))
-    .then((data) => {
-      const info = { stars: data.stargazers_count, updated: data.pushed_at };
-      githubStatsCache.set(repo, info);
-      renderStats(statsEl, info);
-    })
-    .catch(() => {
-      statsEl.textContent = "GitHub stats unavailable right now";
-      statsEl.classList.remove("is-loading");
-      statsEl.classList.add("is-error");
-    });
+      .then((res) => (res.ok ? res.json() : Promise.reject(res.status)))
+      .then((data) => {
+        const info = { stars: data.stargazers_count, updated: data.pushed_at };
+        githubStatsCache.set(repo, info);
+        renderStats(statsEl, info);
+      })
+      .catch(() => {
+        statsEl.textContent = "GitHub stats unavailable right now";
+        statsEl.classList.remove("is-loading");
+        statsEl.classList.add("is-error");
+      });
 }
 
 function renderStats(el, info) {
   el.classList.remove("is-loading", "is-error");
   el.dataset.loaded = "true";
   el.innerHTML =
-    `<span class="stat-stars">★ ${info.stars}</span>` +
-    `<span class="stat-updated">updated ${timeAgo(info.updated)}</span>`;
+      `<span class="stat-stars">★ ${info.stars}</span>` +
+      `<span class="stat-updated">updated ${timeAgo(info.updated)}</span>`;
 }
 
 const projectGridEl = document.getElementById("projectGrid");
@@ -320,168 +318,3 @@ if (projectGridEl) {
 
 renderProjects("all");
 updateProjectCount();
-
-// ---------- content.md loader ----------
-// Parses a small subset of markdown: "## Section" headers, "key: value"
-// fields, "### Item" sub-headers with a one-line description below them
-// (used for the "How the pieces fit" list), and "| a | b |" table rows
-// (used for the Project List). Anything it doesn't recognize is ignored,
-// so the instructional comments at the top of content.md are safely skipped.
-function parseContent(text) {
-  const lines = text.split(/\r?\n/);
-  const sections = {};
-  let currentSection = null;
-  let currentItem = null;
-  let inComment = false;
-
-  for (const raw of lines) {
-    const line = raw.trim();
-
-    if (inComment) {
-      if (line.includes("-->")) inComment = false;
-      continue;
-    }
-    if (line.startsWith("<!--") && !line.includes("-->")) {
-      inComment = true;
-      continue;
-    }
-    if (line.startsWith("<!--")) continue; // single-line comment
-
-    if (!line) { currentItem = null; continue; }
-
-    const h2 = line.match(/^##\s+(.+)$/);
-    if (h2) {
-      currentSection = h2[1].trim();
-      sections[currentSection] = { fields: {}, items: [], table: [] };
-      currentItem = null;
-      continue;
-    }
-
-    if (!currentSection) continue; // ignore anything before the first "## Section"
-
-    const h3 = line.match(/^###\s+(.+)$/);
-    if (h3) {
-      currentItem = { name: h3[1].trim(), body: "" };
-      sections[currentSection].items.push(currentItem);
-      continue;
-    }
-
-    if (line.startsWith("|")) {
-      if (/^\|[\s:|-]+\|$/.test(line)) continue; // markdown table separator row
-      const cells = line.split("|").slice(1, -1).map((c) => c.trim());
-      sections[currentSection].table.push(cells);
-      continue;
-    }
-
-    const kv = line.match(/^([a-zA-Z0-9_]+):\s*(.*)$/);
-    if (kv) {
-      if (currentItem) {
-        currentItem.body = kv[0];
-      } else {
-        sections[currentSection].fields[kv[1]] = kv[2];
-      }
-      continue;
-    }
-
-    if (currentItem) {
-      currentItem.body = currentItem.body ? `${currentItem.body} ${line}` : line;
-    }
-  }
-
-  return sections;
-}
-
-function applyContent(sections) {
-  const setText = (id, val) => {
-    if (val == null) return;
-    const el = document.getElementById(id);
-    if (el) el.textContent = val;
-  };
-
-  const meta = sections["Meta"];
-  if (meta) {
-    if (meta.fields.title) document.title = meta.fields.title;
-    if (meta.fields.description) {
-      const m = document.querySelector('meta[name="description"]');
-      if (m) m.setAttribute("content", meta.fields.description);
-    }
-  }
-
-  const header = sections["Header"];
-  if (header) {
-    setText("brandText", header.fields.brand);
-    setText("navProjects", header.fields.nav_projects);
-    setText("navShowcase", header.fields.nav_showcase);
-    setText("navWiki", header.fields.nav_wiki);
-  }
-
-  const hero = sections["Hero"];
-  if (hero) {
-    setText("heroHeading", hero.fields.heading);
-    setText("heroLede", hero.fields.lede);
-    setText("btnPrimary", hero.fields.button_primary);
-    setText("btnSecondary", hero.fields.button_secondary);
-    setText("heroMetaSuffix", hero.fields.meta_suffix);
-  }
-
-  const foundation = sections["Foundation"];
-  if (foundation) {
-    setText("foundationHeading", foundation.fields.heading);
-    setText("foundationLede", foundation.fields.lede);
-    if (foundation.items.length) {
-      const list = document.getElementById("treeList");
-      if (list) {
-        list.innerHTML = foundation.items
-          .map(
-            (item) => `
-          <li>
-            <span class="tree-path">${escapeHtml(item.name)}</span>
-            <span class="tree-desc">${escapeHtml(item.body)}</span>
-          </li>`
-          )
-          .join("");
-      }
-    }
-  }
-
-  const projectsSection = sections["Projects"];
-  if (projectsSection) {
-    setText("projectsHeading", projectsSection.fields.heading);
-    setText("filterAll", projectsSection.fields.filter_all);
-    setText("filterActive", projectsSection.fields.filter_active);
-    setText("filterMaintenance", projectsSection.fields.filter_maintenance);
-    setText("filterLimbo", projectsSection.fields.filter_limbo);
-  }
-
-  const footer = sections["Footer"];
-  if (footer) {
-    setText("footerText", footer.fields.text);
-    setText("footerWikiText", footer.fields.wiki_link);
-  }
-
-  const projectList = sections["Project List"];
-  if (projectList && projectList.table.length > 1) {
-    const headerRow = projectList.table[0].map((h) => h.toLowerCase());
-    const idx = (name) => headerRow.indexOf(name);
-    const nameIdx = idx("name");
-    const statusIdx = idx("status");
-    const descIdx = idx("description");
-    const ghIdx = idx("github");
-    const cfIdx = idx("curseforge");
-
-    if (nameIdx !== -1 && statusIdx !== -1) {
-      PROJECTS = projectList.table.slice(1).map((row) => ({
-        name: row[nameIdx] || "",
-        status: (row[statusIdx] || "").toLowerCase(),
-        desc: descIdx !== -1 ? row[descIdx] || "" : "",
-        githubUrl: ghIdx !== -1 && row[ghIdx] ? row[ghIdx] : null,
-        cfUrl: cfIdx !== -1 && row[cfIdx] ? row[cfIdx] : null,
-      }));
-      assignCatalogIds(PROJECTS);
-    }
-  }
-
-  renderProjects(activeFilter);
-  updateProjectCount();
-}
-
