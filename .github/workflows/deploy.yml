@@ -36,6 +36,7 @@ jobs:
         run: |
           mkdir -p _site
           cp index.html _site/
+          cp content.md _site/
           cp -r assets _site/
           cp -r wiki/site _site/wiki
 

@@ -1,0 +1,96 @@
+/* Ties the wiki's palette/type back to the main Phoenix Suite site.
+   Material's own tokens (primary/accent) are remapped to our exact
+   hex values instead of the stock Material Design swatches:
+     primary  -> always the main site's --accent (purple), constant
+     accent   -> the main site's --accent-2, which is what actually
+                 swaps between the Sakura/Ember/Void palettes
+   That mirrors how the main site uses color: one constant brand hue,
+   one varying highlight, blocked solid rather than blended. */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap');
+
+/* ---------- Light (default) scheme, all three accents ---------- */
+[data-md-color-scheme="default"] {
+  --md-default-bg-color: #fbf8fb;
+  --md-default-fg-color: #221a26;
+  --md-default-fg-color--light: #5c4f63;
+  --md-default-fg-color--lighter: #8f7f95;
+  --md-default-fg-color--lightest: #e8dbe6;
+  --md-code-bg-color: #f5eef4;
+  --md-code-fg-color: #221a26;
+  --md-typeset-color: #221a26;
+  --md-typeset-table-color: #e8dbe6;
+  --md-footer-bg-color: #221a26e6;
+  --md-footer-bg-color--dark: #1a141e;
+  --md-primary-fg-color: #9333ea;
+  --md-primary-fg-color--light: #a855f7;
+  --md-primary-fg-color--dark: #7c3aed;
+  --md-primary-bg-color: #fff;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color: #0a070c;
+  --md-default-fg-color: #f3eef6;
+  --md-default-fg-color--light: #b9aec4;
+  --md-default-fg-color--lighter: #7d7189;
+  --md-default-fg-color--lightest: #2b2230;
+  --md-code-bg-color: #1c1620;
+  --md-code-fg-color: #f3eef6;
+  --md-typeset-color: #f3eef6;
+  --md-typeset-table-color: #2b2230;
+  --md-footer-bg-color: #130f17e6;
+  --md-footer-bg-color--dark: #0a070c;
+  --md-primary-fg-color: #a855f7;
+  --md-primary-fg-color--light: #c084fc;
+  --md-primary-fg-color--dark: #9333ea;
+  --md-primary-bg-color: #fff;
+}
+
+/* Accent = the palette-specific highlight color (pink / orange / cyan),
+   used for links, hover states and the tab indicator. */
+[data-md-color-scheme="default"][data-md-color-accent="pink"] { --md-accent-fg-color: #ec4899; --md-accent-fg-color--transparent: #ec48991a; }
+[data-md-color-scheme="slate"][data-md-color-accent="pink"] { --md-accent-fg-color: #ff6fae; --md-accent-fg-color--transparent: #ff6fae1a; }
+
+[data-md-color-scheme="default"][data-md-color-accent="deep-orange"] { --md-accent-fg-color: #ea580c; --md-accent-fg-color--transparent: #ea580c1a; }
+[data-md-color-scheme="slate"][data-md-color-accent="deep-orange"] { --md-accent-fg-color: #ff7a3d; --md-accent-fg-color--transparent: #ff7a3d1a; }
+
+[data-md-color-scheme="default"][data-md-color-accent="cyan"] { --md-accent-fg-color: #0891b2; --md-accent-fg-color--transparent: #0891b21a; }
+[data-md-color-scheme="slate"][data-md-color-accent="cyan"] { --md-accent-fg-color: #22d3ee; --md-accent-fg-color--transparent: #22d3ee1a; }
+
+/* Links use the accent (highlight) color, same as the main site's nav-cta. */
+.md-typeset a { color: var(--md-accent-fg-color); }
+.md-typeset a:hover { color: var(--md-primary-fg-color); }
+
+/* ---------- Type ---------- */
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-nav__title,
+.md-header__topic > :first-child {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* ---------- Shape: match the main site's flatter, solid-color language ---------- */
+.md-typeset code,
+.md-typeset pre > code,
+.md-typeset .highlight,
+.md-typeset .admonition,
+.md-typeset details,
+.md-search__form,
+.md-typeset table:not([class]) {
+  border-radius: 10px;
+}
+
+.md-typeset .admonition,
+.md-typeset details {
+  border-width: 1px;
+}
+
+/* Flat tab bar / header, no drop shadow, to match the main site's
+   flat solid-color header rather than Material's default elevation. */
+.md-header,
+.md-tabs {
+  box-shadow: none;
+}

@@ -26,32 +26,32 @@ theme:
         icon: material/flower
         name: Sakura (dark) switch to Ember (light)
     - scheme: default
-      primary: deep-orange
-      accent: deep-purple
+      primary: deep-purple
+      accent: deep-orange
       toggle:
         icon: material/fire
         name: Ember (light) switch to Ember (dark)
     - scheme: slate
-      primary: deep-orange
-      accent: deep-purple
+      primary: deep-purple
+      accent: deep-orange
       toggle:
         icon: material/fire
         name: Ember (dark) switch to Void (light)
     - scheme: default
-      primary: cyan
-      accent: deep-purple
+      primary: deep-purple
+      accent: cyan
       toggle:
         icon: material/creation
         name: Void (light) switch to Void (dark)
     - scheme: slate
-      primary: cyan
-      accent: deep-purple
+      primary: deep-purple
+      accent: cyan
       toggle:
         icon: material/creation
         name: Void (dark) switch to Sakura (light)
   font:
-    text: Roboto
-    code: Roboto Mono
+    text: IBM Plex Sans
+    code: IBM Plex Mono
   features:
     - navigation.instant
     - navigation.sections
@@ -67,6 +67,9 @@ plugins:
   - search
   - awesome-pages:
       collapse_single_pages: true
+
+extra_css:
+  - stylesheets/extra.css
 
 markdown_extensions:
   - admonition
