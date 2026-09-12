@@ -34,15 +34,15 @@
 const PROJECTS = [
   {
     name: "PhoenixCore",
-    status: "forever",
-    desc: "The suite's coremod - shared systems most other Phoenix mods build on.",
+    status: "active",
+    desc: "The Core-mod for the pack Phoenix Forge Technologies",
     githubUrl: "https://github.com/Omicron-Industries/PhoenixCore",
     cfUrl: null,
   },
   {
     name: "Phoenix Forge Technologies",
-    status: "forever",
-    desc: "The flagship modpack built around the suite.",
+    status: "active",
+    desc: "The main Forge modpack built using the PhoenixSuite.",
     githubUrl: "https://github.com/P-H-O-E-N-I-X-PackForge/Phoenix-Forge-Technologies",
     cfUrl: null,
   },
@@ -140,7 +140,6 @@ const PROJECTS = [
 ];
 
 const STATUS_LABEL = {
-  forever: "Forever",
   active: "Active",
   maintenance: "Maintenance",
   limbo: "Limbo",
@@ -158,7 +157,7 @@ function projectCard(p) {
     <div class="project-card" data-status="${p.status}">
       <div class="project-card-head">
         <span class="project-name">${p.name}</span>
-        <span class="status-badge status-${p.status}">${STATUS_LABEL[p.status]}</span>
+        <span class="status-tag"><span class="status-dot status-${p.status}"></span>${STATUS_LABEL[p.status]}</span>
       </div>
       <p class="project-desc">${p.desc}</p>
       <div class="project-links">${cf}${github}</div>
@@ -171,6 +170,9 @@ function renderProjects(filter) {
     filter === "all" ? PROJECTS : PROJECTS.filter((p) => p.status === filter);
   grid.innerHTML = items.map(projectCard).join("");
 }
+
+const projectCountEl = document.getElementById("projectCount");
+if (projectCountEl) projectCountEl.textContent = PROJECTS.length;
 
 document.querySelectorAll(".filter-chip").forEach((chip) => {
   chip.addEventListener("click", () => {
