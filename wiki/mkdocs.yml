@@ -54,10 +54,8 @@ theme:
     code: IBM Plex Mono
   features:
     - navigation.instant
-    - navigation.sections
     - navigation.indexes
-    - navigation.tabs
-    - navigation.tabs.sticky
+    - navigation.path
     - navigation.top
     - toc.follow
     - content.code.annotate

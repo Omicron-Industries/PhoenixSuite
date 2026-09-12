@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Phoenix Suite</title>
   <meta name="description" content="A one-person workshop of Minecraft mods and modpacks, built by Phoenixvine." />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔥</text></svg>" />
+  <link rel="icon" href="wiki/content/assets/icon.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -16,30 +16,9 @@
   <header class="site-header">
     <div class="wrap header-inner">
       <a class="brand" href="#top">
-        <svg class="brand-mark" viewBox="0 0 20 28" aria-hidden="true">
-          <rect x="8" y="0" width="4" height="4" class="px-hot" />
-          <rect x="4" y="4" width="4" height="4" class="px-hot" />
-          <rect x="8" y="4" width="4" height="4" class="px-hot" />
-          <rect x="12" y="4" width="4" height="4" class="px-hot" />
-          <rect x="4" y="8" width="4" height="4" class="px-out" />
-          <rect x="8" y="8" width="4" height="4" class="px-hot" />
-          <rect x="12" y="8" width="4" height="4" class="px-out" />
-          <rect x="0" y="12" width="4" height="4" class="px-out" />
-          <rect x="4" y="12" width="4" height="4" class="px-out" />
-          <rect x="8" y="12" width="4" height="4" class="px-hot" />
-          <rect x="12" y="12" width="4" height="4" class="px-out" />
-          <rect x="16" y="12" width="4" height="4" class="px-out" />
-          <rect x="0" y="16" width="4" height="4" class="px-out" />
-          <rect x="4" y="16" width="4" height="4" class="px-out" />
-          <rect x="8" y="16" width="4" height="4" class="px-out" />
-          <rect x="12" y="16" width="4" height="4" class="px-out" />
-          <rect x="16" y="16" width="4" height="4" class="px-out" />
-          <rect x="4" y="20" width="4" height="4" class="px-out" />
-          <rect x="8" y="20" width="4" height="4" class="px-out" />
-          <rect x="12" y="20" width="4" height="4" class="px-out" />
-          <rect x="8" y="24" width="4" height="4" class="px-out" />
-        </svg>
-        <span class="brand-text" id="brandText">Phoenix Suite</span>
+        <a class="brand" href="#top">
+          <img src="wiki/content/assets/icon.png" alt="Phoenix Suite Logo" class="brand-mark" />
+          <span class="brand-text" id="brandText">Phoenix Suite</span>
       </a>
       <nav class="site-nav">
         <a href="#projects" id="navProjects">Projects</a>
@@ -63,17 +42,17 @@
     <section class="hero" id="top">
       <div class="wrap hero-inner">
         <div class="hero-copy">
-          <h1 id="heroHeading">A suite of mods that all share one spine.</h1>
+          <h1 id="heroHeading">A suite of mods that all work together.</h1>
           <p class="hero-lede" id="heroLede">
-            I build Minecraft mods for Forge 1.20.1 — mostly the plumbing other mods and packs
-            get built on, not flashy content additions. Everything here shares one foundation,
-            gets real documentation, and ships when it's actually ready.
+           A suite of primarily 1.20.1 mods that started out for the purpose of making Phoenix Forge Technologies a consistent bespoke project.
+            However, the focus has shifted onto making quality mods for the community since they have gotten more popularity.
+            The three core values of the PhoenixSuite are configurability, documentation, and themability. Proudly part of Omicron Industries.
           </p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#projects" id="btnPrimary">Browse Projects</a>
             <a class="btn btn-secondary" href="wiki/" id="btnSecondary">Open the Wiki</a>
           </div>
-          <p class="hero-meta"><span id="projectCount">15</span> <span id="heroMetaSuffix">mods and counting, built solo, all for Forge 1.20.1.</span></p>
+          <p class="hero-meta"><span id="projectCount">15</span> <span id="heroMetaSuffix">total mods. Built mostly solo with help from the community.</span></p>
         </div>
       </div>
     </section>
@@ -82,25 +61,86 @@
       <div class="wrap">
         <h2 id="foundationHeading">How the pieces fit</h2>
         <p class="foundation-lede" id="foundationLede">
-          PhoenixCore sits underneath most of it — shared plumbing so each mod isn't
-          reinventing the same systems. Here's how the rest connects to it:
+          PhoenixWiki sits under the entire PhoenixSuite providing a backbone to hopefully reduce duplicated code.
+          Here's how all the mods connect together:
         </p>
         <ul class="tree-list" id="treeList">
           <li>
-            <span class="tree-path">phoenix/core</span>
-            <span class="tree-desc">shared foundation the rest of the suite builds on</span>
+            <span class="tree-path">phoenix/wiki</span>
+            <span class="tree-desc">Shared foundation the rest of the suite builds on.
+              Handles themeing, ingame wiki, and the hud buttons</span>
+          </li>
+          <li>
+            <span class="tree-path">phoenix/guilds</span>
+            <span class="tree-desc">Coremod for PFT hosting all the pack specific wild ideas.
+            Chronicles has optional compatability into PhoenixCore's internal research system named Conflux of Research.
+            </span>
+          </li>
+          <li>
+            <span class="tree-path">phoenix/solaris</span>
+            <span class="tree-desc">Coremod for PFT hosting all the pack specific wild ideas.
+            Chronicles has optional compatability into PhoenixCore's internal research system named Conflux of Research.
+            </span>
+          </li>
+          <li>
+            <span class="tree-path">phoenix/domains</span>
+            <span class="tree-desc">Coremod for PFT hosting all the pack specific wild ideas.
+            Chronicles has optional compatability into PhoenixCore's internal research system named Conflux of Research.
+            </span>
           </li>
           <li>
             <span class="tree-path">phoenix/chronicles</span>
-            <span class="tree-desc">quest editor — live dependency lines, drag-to-reorder, FTB Quests import</span>
+            <span class="tree-desc">Questbook mod focused on dev power and configurability.
+              Archives, PhoenixCore, and Domains depend on it.
+            </span>
           </li>
           <li>
-            <span class="tree-path">phoenix/forge-tech</span>
-            <span class="tree-desc">the modpack that proves it all works together</span>
+            <span class="tree-path">phoenix/forge-technologies</span>
+            <span class="tree-desc">The flagship modpack all the mods were designed to fit into.
+              Every PhoenixSuite mod is meant to fit nicely into PFT.
+            </span>
           </li>
           <li>
-            <span class="tree-path">phoenix/wiki</span>
-            <span class="tree-desc">player guides and developer docs, kept in one place</span>
+            <span class="tree-path">phoenix/core</span>
+            <span class="tree-desc">Coremod for PFT hosting all the pack specific wild ideas.
+            Chronicles has optional compatability into PhoenixCore's internal research system named Conflux of Research.
+            </span>
+          </li>
+          <li>
+            <span class="tree-path">phoenix/archives</span>
+            <span class="tree-desc">Coremod for PFT hosting all the pack specific wild ideas.
+            Chronicles has optional compatability into PhoenixCore's internal research system named Conflux of Research.
+            </span>
+          </li>
+          <li>
+            <span class="tree-path">phoenix/excavate</span>
+            <span class="tree-desc">Coremod for PFT hosting all the pack specific wild ideas.
+            Chronicles has optional compatability into PhoenixCore's internal research system named Conflux of Research.
+            </span>
+          </li>
+          <li>
+            <span class="tree-path">phoenix/essentials</span>
+            <span class="tree-desc">Coremod for PFT hosting all the pack specific wild ideas.
+            Chronicles has optional compatability into PhoenixCore's internal research system named Conflux of Research.
+            </span>
+          </li>
+          <li>
+            <span class="tree-path">phoenix/fission</span>
+            <span class="tree-desc">Coremod for PFT hosting all the pack specific wild ideas.
+            Chronicles has optional compatability into PhoenixCore's internal research system named Conflux of Research.
+            </span>
+          </li>
+          <li>
+            <span class="tree-path">phoenix/phantasia</span>
+            <span class="tree-desc">Coremod for PFT hosting all the pack specific wild ideas.
+            Chronicles has optional compatability into PhoenixCore's internal research system named Conflux of Research.
+            </span>
+          </li>
+          <li>
+            <span class="tree-path">phoenix/core</span>
+            <span class="tree-desc">Coremod for PFT hosting all the pack specific wild ideas.
+            Chronicles has optional compatability into PhoenixCore's internal research system named Conflux of Research.
+            </span>
           </li>
         </ul>
       </div>

@@ -7,8 +7,6 @@
    That mirrors how the main site uses color: one constant brand hue,
    one varying highlight, blocked solid rather than blended. */
 
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap');
-
 /* ---------- Light (default) scheme, all three accents ---------- */
 [data-md-color-scheme="default"] {
   --md-default-bg-color: #fbf8fb;
@@ -47,29 +45,48 @@
 }
 
 /* Accent = the palette-specific highlight color (pink / orange / cyan),
-   used for links, hover states and the tab indicator. */
-[data-md-color-scheme="default"][data-md-color-accent="pink"] { --md-accent-fg-color: #ec4899; --md-accent-fg-color--transparent: #ec48991a; }
-[data-md-color-scheme="slate"][data-md-color-accent="pink"] { --md-accent-fg-color: #ff6fae; --md-accent-fg-color--transparent: #ff6fae1a; }
+   used for links, the active-tab underline, and the sidebar's active-page
+   indicator — the elements that are actually supposed to swap when you
+   click the palette toggle. --md-typeset-a-color is set here too since
+   several default Material components (not just .md-typeset a) read it
+   directly for their "active/link" color. */
+[data-md-color-scheme="default"][data-md-color-accent="pink"] { --md-accent-fg-color: #ec4899; --md-accent-fg-color--transparent: #ec48991a; --md-typeset-a-color: #ec4899; }
+[data-md-color-scheme="slate"][data-md-color-accent="pink"] { --md-accent-fg-color: #ff6fae; --md-accent-fg-color--transparent: #ff6fae1a; --md-typeset-a-color: #ff6fae; }
 
-[data-md-color-scheme="default"][data-md-color-accent="deep-orange"] { --md-accent-fg-color: #ea580c; --md-accent-fg-color--transparent: #ea580c1a; }
-[data-md-color-scheme="slate"][data-md-color-accent="deep-orange"] { --md-accent-fg-color: #ff7a3d; --md-accent-fg-color--transparent: #ff7a3d1a; }
+[data-md-color-scheme="default"][data-md-color-accent="deep-orange"] { --md-accent-fg-color: #ea580c; --md-accent-fg-color--transparent: #ea580c1a; --md-typeset-a-color: #ea580c; }
+[data-md-color-scheme="slate"][data-md-color-accent="deep-orange"] { --md-accent-fg-color: #ff7a3d; --md-accent-fg-color--transparent: #ff7a3d1a; --md-typeset-a-color: #ff7a3d; }
 
-[data-md-color-scheme="default"][data-md-color-accent="cyan"] { --md-accent-fg-color: #0891b2; --md-accent-fg-color--transparent: #0891b21a; }
-[data-md-color-scheme="slate"][data-md-color-accent="cyan"] { --md-accent-fg-color: #22d3ee; --md-accent-fg-color--transparent: #22d3ee1a; }
+[data-md-color-scheme="default"][data-md-color-accent="cyan"] { --md-accent-fg-color: #0891b2; --md-accent-fg-color--transparent: #0891b21a; --md-typeset-a-color: #0891b2; }
+[data-md-color-scheme="slate"][data-md-color-accent="cyan"] { --md-accent-fg-color: #22d3ee; --md-accent-fg-color--transparent: #22d3ee1a; --md-typeset-a-color: #22d3ee; }
 
-/* Links use the accent (highlight) color, same as the main site's nav-cta. */
-.md-typeset a { color: var(--md-accent-fg-color); }
+/* Content links: accent by default, shift to the constant brand purple
+   on hover — the same two-tone interaction as the main site's buttons. */
 .md-typeset a:hover { color: var(--md-primary-fg-color); }
 
-/* ---------- Type ---------- */
-.md-typeset h1,
-.md-typeset h2,
-.md-typeset h3,
-.md-nav__title,
-.md-header__topic > :first-child {
-  font-family: "Fraunces", Georgia, serif;
+/* ---------- Type: big, bold, sans headings (not the main site's serif —
+   this is deliberately closer to a docs-site reference the user pointed
+   to). IBM Plex Sans is already the base font via theme.font.text, so we
+   only need to override Material's default thin weight and add size. ---------- */
+.md-typeset h1 {
+  font-weight: 700;
+  font-size: 2.6rem;
+  letter-spacing: -0.01em;
+  color: var(--md-default-fg-color);
+}
+
+.md-typeset h2 {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.md-typeset h3 {
   font-weight: 600;
   letter-spacing: -0.01em;
+}
+
+.md-nav__title,
+.md-header__topic > :first-child {
+  font-weight: 700;
 }
 
 /* ---------- Shape: match the main site's flatter, solid-color language ---------- */
@@ -83,14 +100,84 @@
   border-radius: 10px;
 }
 
+/* Admonitions ("!!! info", "!!! warning", etc.) each ship with their own
+   hardcoded color in Material (blue for note, orange for warning, red for
+   danger...). That's the rainbow-of-brand-colors look we're avoiding —
+   collapse all types to one solid, filled block in our own accent color,
+   closer to a docs-site callout box than Material's thin-tinted-strip
+   default. The !important pairs are needed because Material sets these
+   per admonition-type class (.admonition.note, .admonition.warning, etc.)
+   at higher specificity than a single shared override can reach. */
 .md-typeset .admonition,
 .md-typeset details {
-  border-width: 1px;
+  border: none !important;
+  background-color: color-mix(in srgb, var(--md-accent-fg-color) 12%, var(--md-default-bg-color)) !important;
 }
 
-/* Flat tab bar / header, no drop shadow, to match the main site's
-   flat solid-color header rather than Material's default elevation. */
+.md-typeset .admonition-title,
+.md-typeset summary {
+  background-color: color-mix(in srgb, var(--md-accent-fg-color) 24%, var(--md-default-bg-color)) !important;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  letter-spacing: 0.03em;
+}
+
+.md-typeset .admonition-title::before,
+.md-typeset summary::before,
+.md-typeset .admonition-title::after,
+.md-typeset summary::after {
+  background-color: var(--md-accent-fg-color) !important;
+  color: var(--md-accent-fg-color) !important;
+}
+
+.md-typeset .admonition:focus-within,
+.md-typeset details:focus-within {
+  box-shadow: 0 0 0 0.2rem var(--md-accent-fg-color--transparent) !important;
+}
+
+/* Hide the star/fork counter on the header repo link — keep it to a
+   plain "GitHub" link, closer to the reference's minimal header. */
+.md-source__facts {
+  display: none;
+}
+
+/* ---------- Header & tabs: the main site's header is dark/neutral with
+   small colored accents, never a full solid-color band. Material's
+   default paints .md-header/.md-tabs entirely in --md-primary-fg-color,
+   which is the "corporate SaaS" look we moved away from on the main
+   site — so override it back to a translucent, blurred, bottom-bordered
+   bar, same as .site-header there. ---------- */
 .md-header,
 .md-tabs {
+  background-color: color-mix(in srgb, var(--md-default-bg-color) 88%, transparent);
+  color: var(--md-default-fg-color);
+  backdrop-filter: blur(10px);
   box-shadow: none;
+}
+
+.md-header {
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.md-tabs {
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.md-header__button,
+.md-header__topic,
+.md-search__icon {
+  color: var(--md-default-fg-color);
+}
+
+.md-header .md-search__form {
+  background-color: var(--md-code-bg-color);
+  color: var(--md-default-fg-color);
+}
+
+/* Active tab gets an accent-colored underline, same device as the main
+   site's active filter tab — this is the most visible "yes, the palette
+   actually changed" cue in the whole page. */
+.md-tabs__item--active .md-tabs__link {
+  box-shadow: inset 0 -2px 0 var(--md-accent-fg-color);
 }
