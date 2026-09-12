@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Phoenix Suite</title>
   <meta name="description" content="A one-person workshop of Minecraft mods and modpacks, built by Phoenixvine." />
-  <link rel="icon" href="wiki/content/assets/icon.png" type="image/png" />
+  <link rel="icon" href="wiki/assets/icon.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -13,162 +13,161 @@
 </head>
 <body>
 
-  <header class="site-header">
-    <div class="wrap header-inner">
-      <a class="brand" href="#top">
-        <a class="brand" href="#top">
-          <img src="wiki/content/assets/icon.png" alt="Phoenix Suite Logo" class="brand-mark" />
-          <span class="brand-text" id="brandText">Phoenix Suite</span>
-      </a>
-      <nav class="site-nav">
-        <a href="#projects" id="navProjects">Projects</a>
-        <a href="#showcase" id="navShowcase">How it fits</a>
-        <a href="wiki/" class="nav-cta" id="navWiki">Wiki</a>
-      </nav>
-      <div class="header-controls">
-        <div class="palette-picker" role="group" aria-label="Color theme">
-          <button class="palette-swatch is-active" data-palette="sakura" title="Sakura (purple + pink)" aria-label="Sakura palette"></button>
-          <button class="palette-swatch" data-palette="ember" title="Ember (purple + orange)" aria-label="Ember palette"></button>
-          <button class="palette-swatch" data-palette="void" title="Void (purple + cyan)" aria-label="Void palette"></button>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#top">
+      <img src="wiki/assets/icon.png" alt="Phoenix Suite Logo" class="brand-mark" />
+      <span class="brand-text" id="brandText">Phoenix Suite</span>
+    </a>
+    <nav class="site-nav">
+      <a href="#projects" id="navProjects">Projects</a>
+      <a href="#showcase" id="navShowcase">How it fits</a>
+      <a href="wiki/" class="nav-cta" id="navWiki">Wiki</a>
+    </nav>
+    <div class="header-controls">
+      <div class="palette-picker" role="group" aria-label="Color theme">
+        <button class="palette-swatch is-active" data-palette="sakura" title="Sakura (purple + pink)" aria-label="Sakura palette"></button>
+        <button class="palette-swatch" data-palette="ember" title="Ember (purple + orange)" aria-label="Ember palette"></button>
+        <button class="palette-swatch" data-palette="void" title="Void (purple + cyan)" aria-label="Void palette"></button>
+      </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode" title="Toggle light/dark mode">
+        <span class="icon-sun">☀️</span><span class="icon-moon">🌙</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="top">
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <h1 id="heroHeading">A suite of mods that all work together.</h1>
+        <p class="hero-lede" id="heroLede">
+          A suite of primarily 1.20.1 mods that started out for the purpose of making Phoenix Forge Technologies a consistent bespoke project.
+          However, the focus has shifted onto making quality mods for the community since they have gotten more popularity.
+          The three core values of the PhoenixSuite are configurability, documentation, and themability. Proudly part of Omicron Industries.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects" id="btnPrimary">Browse Projects</a>
+          <a class="btn btn-secondary" href="wiki/" id="btnSecondary">Open the Wiki</a>
         </div>
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode" title="Toggle light/dark mode">
-          <span class="icon-sun">☀️</span><span class="icon-moon">🌙</span>
-        </button>
+        <p class="hero-meta"><span id="projectCount">15</span> <span id="heroMetaSuffix">total mods. Built mostly solo with help from the community.</span></p>
       </div>
     </div>
-  </header>
+  </section>
 
-  <main>
-    <section class="hero" id="top">
-      <div class="wrap hero-inner">
-        <div class="hero-copy">
-          <h1 id="heroHeading">A suite of mods that all work together.</h1>
-          <p class="hero-lede" id="heroLede">
-           A suite of primarily 1.20.1 mods that started out for the purpose of making Phoenix Forge Technologies a consistent bespoke project.
-            However, the focus has shifted onto making quality mods for the community since they have gotten more popularity.
-            The three core values of the PhoenixSuite are configurability, documentation, and themability. Proudly part of Omicron Industries.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#projects" id="btnPrimary">Browse Projects</a>
-            <a class="btn btn-secondary" href="wiki/" id="btnSecondary">Open the Wiki</a>
-          </div>
-          <p class="hero-meta"><span id="projectCount">15</span> <span id="heroMetaSuffix">total mods. Built mostly solo with help from the community.</span></p>
-        </div>
-      </div>
-    </section>
-
-    <section class="foundation" id="showcase">
-      <div class="wrap">
-        <h2 id="foundationHeading">How the pieces fit</h2>
-        <p class="foundation-lede" id="foundationLede">
-          PhoenixWiki sits under the entire PhoenixSuite providing a backbone to hopefully reduce duplicated code.
-          Here's how all the mods connect together:
-        </p>
-        <ul class="tree-list" id="treeList">
-          <li>
-            <span class="tree-path">phoenix/wiki</span>
-            <span class="tree-desc">Shared foundation the rest of the suite builds on.
+  <section class="foundation" id="showcase">
+    <div class="wrap">
+      <h2 id="foundationHeading">How the pieces fit</h2>
+      <p class="foundation-lede" id="foundationLede">
+        PhoenixWiki sits under the entire PhoenixSuite providing a backbone to hopefully reduce duplicated code.
+        Here's how all the mods connect together:
+      </p>
+      <ul class="tree-list" id="treeList">
+        <li>
+          <span class="tree-path">phoenix/wiki</span>
+          <span class="tree-desc">Shared foundation the rest of the suite builds on.
               Handles themeing, ingame wiki, and the hud buttons</span>
-          </li>
-          <li>
-            <span class="tree-path">phoenix/guilds</span>
-            <span class="tree-desc">Coremod for PFT hosting all the pack specific wild ideas.
+        </li>
+        <li>
+          <span class="tree-path">phoenix/guilds</span>
+          <span class="tree-desc">Coremod for PFT hosting all the pack specific wild ideas.
             Chronicles has optional compatability into PhoenixCore's internal research system named Conflux of Research.
             </span>
-          </li>
-          <li>
-            <span class="tree-path">phoenix/solaris</span>
-            <span class="tree-desc">Coremod for PFT hosting all the pack specific wild ideas.
+        </li>
+        <li>
+          <span class="tree-path">phoenix/solaris</span>
+          <span class="tree-desc">Coremod for PFT hosting all the pack specific wild ideas.
             Chronicles has optional compatability into PhoenixCore's internal research system named Conflux of Research.
             </span>
-          </li>
-          <li>
-            <span class="tree-path">phoenix/domains</span>
-            <span class="tree-desc">Coremod for PFT hosting all the pack specific wild ideas.
+        </li>
+        <li>
+          <span class="tree-path">phoenix/domains</span>
+          <span class="tree-desc">Coremod for PFT hosting all the pack specific wild ideas.
             Chronicles has optional compatability into PhoenixCore's internal research system named Conflux of Research.
             </span>
-          </li>
-          <li>
-            <span class="tree-path">phoenix/chronicles</span>
-            <span class="tree-desc">Questbook mod focused on dev power and configurability.
+        </li>
+        <li>
+          <span class="tree-path">phoenix/chronicles</span>
+          <span class="tree-desc">Questbook mod focused on dev power and configurability.
               Archives, PhoenixCore, and Domains depend on it.
             </span>
-          </li>
-          <li>
-            <span class="tree-path">phoenix/forge-technologies</span>
-            <span class="tree-desc">The flagship modpack all the mods were designed to fit into.
+        </li>
+        <li>
+          <span class="tree-path">phoenix/forge-technologies</span>
+          <span class="tree-desc">The flagship modpack all the mods were designed to fit into.
               Every PhoenixSuite mod is meant to fit nicely into PFT.
             </span>
-          </li>
-          <li>
-            <span class="tree-path">phoenix/core</span>
-            <span class="tree-desc">Coremod for PFT hosting all the pack specific wild ideas.
+        </li>
+        <li>
+          <span class="tree-path">phoenix/core</span>
+          <span class="tree-desc">Coremod for PFT hosting all the pack specific wild ideas.
             Chronicles has optional compatability into PhoenixCore's internal research system named Conflux of Research.
             </span>
-          </li>
-          <li>
-            <span class="tree-path">phoenix/archives</span>
-            <span class="tree-desc">Coremod for PFT hosting all the pack specific wild ideas.
+        </li>
+        <li>
+          <span class="tree-path">phoenix/archives</span>
+          <span class="tree-desc">Coremod for PFT hosting all the pack specific wild ideas.
             Chronicles has optional compatability into PhoenixCore's internal research system named Conflux of Research.
             </span>
-          </li>
-          <li>
-            <span class="tree-path">phoenix/excavate</span>
-            <span class="tree-desc">Coremod for PFT hosting all the pack specific wild ideas.
+        </li>
+        <li>
+          <span class="tree-path">phoenix/excavate</span>
+          <span class="tree-desc">Coremod for PFT hosting all the pack specific wild ideas.
             Chronicles has optional compatability into PhoenixCore's internal research system named Conflux of Research.
             </span>
-          </li>
-          <li>
-            <span class="tree-path">phoenix/essentials</span>
-            <span class="tree-desc">Coremod for PFT hosting all the pack specific wild ideas.
+        </li>
+        <li>
+          <span class="tree-path">phoenix/essentials</span>
+          <span class="tree-desc">Coremod for PFT hosting all the pack specific wild ideas.
             Chronicles has optional compatability into PhoenixCore's internal research system named Conflux of Research.
             </span>
-          </li>
-          <li>
-            <span class="tree-path">phoenix/fission</span>
-            <span class="tree-desc">Coremod for PFT hosting all the pack specific wild ideas.
+        </li>
+        <li>
+          <span class="tree-path">phoenix/fission</span>
+          <span class="tree-desc">Coremod for PFT hosting all the pack specific wild ideas.
             Chronicles has optional compatability into PhoenixCore's internal research system named Conflux of Research.
             </span>
-          </li>
-          <li>
-            <span class="tree-path">phoenix/phantasia</span>
-            <span class="tree-desc">Coremod for PFT hosting all the pack specific wild ideas.
+        </li>
+        <li>
+          <span class="tree-path">phoenix/phantasia</span>
+          <span class="tree-desc">Coremod for PFT hosting all the pack specific wild ideas.
             Chronicles has optional compatability into PhoenixCore's internal research system named Conflux of Research.
             </span>
-          </li>
-          <li>
-            <span class="tree-path">phoenix/core</span>
-            <span class="tree-desc">Coremod for PFT hosting all the pack specific wild ideas.
+        </li>
+        <li>
+          <span class="tree-path">phoenix/core</span>
+          <span class="tree-desc">Coremod for PFT hosting all the pack specific wild ideas.
             Chronicles has optional compatability into PhoenixCore's internal research system named Conflux of Research.
             </span>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="projects" id="projects">
-      <div class="wrap">
-        <div class="projects-head">
-          <h2 id="projectsHeading">Projects</h2>
-          <div class="filter-bar" role="group" aria-label="Filter projects by status">
-            <button class="filter-chip is-active" data-filter="all" id="filterAll">All</button>
-            <button class="filter-chip" data-filter="active" id="filterActive">Active</button>
-            <button class="filter-chip" data-filter="maintenance" id="filterMaintenance">Maintenance</button>
-            <button class="filter-chip" data-filter="limbo" id="filterLimbo">Limbo / Abandoned</button>
-          </div>
-        </div>
-        <div class="project-grid" id="projectGrid"><!-- populated by main.js --></div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="wrap footer-inner">
-      <span id="footerText">Phoenix Suite — a solo project by Phoenixvine.</span>
-      <a href="wiki/" id="footerWikiText">Wiki</a>
+        </li>
+      </ul>
     </div>
-  </footer>
+  </section>
 
-  <script src="assets/js/main.js"></script>
+  <section class="projects" id="projects">
+    <div class="wrap">
+      <div class="projects-head">
+        <h2 id="projectsHeading">Projects</h2>
+        <div class="filter-bar" role="group" aria-label="Filter projects by status">
+          <button class="filter-chip is-active" data-filter="all" id="filterAll">All</button>
+          <button class="filter-chip" data-filter="active" id="filterActive">Active</button>
+          <button class="filter-chip" data-filter="maintenance" id="filterMaintenance">Maintenance</button>
+          <button class="filter-chip" data-filter="limbo" id="filterLimbo">Limbo / Abandoned</button>
+        </div>
+      </div>
+      <div class="project-grid" id="projectGrid"><!-- populated by main.js --></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <span id="footerText">Phoenix Suite — a solo project by Phoenixvine.</span>
+    <a href="wiki/" id="footerWikiText">Wiki</a>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
 </body>
 </html>
